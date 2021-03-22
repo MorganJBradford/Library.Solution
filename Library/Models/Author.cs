@@ -1,7 +1,14 @@
+using System.Collections.Generic;
 namespace Library.Models
 {
   public class Author
   {
-    // properties, constructors, methods, etc. go here
+    public Author()
+    {
+      this.JoinEntities = new HashSet<AuthorBook>();
+    }
+    public int AuthorId { get; set; }
+    public string Name { get; set; }
+    public virtual ICollection<AuthorBook> JoinEntities { get; set; }
   }
 }
