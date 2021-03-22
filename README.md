@@ -1,6 +1,6 @@
 ## <div align="center">Library</div>
-#### <div align="center"> *A website created for tracking business vendors and orders* </div> 
-***<p align="right">Morgan Bradford***</p>   
+#### <div align="center"> *A website created to keep track of a library's patrons and books.* </div> 
+***<p align="right">Morgan Bradford & Dani Renner***</p>   
 <p align="center">
 <br>
 
@@ -10,7 +10,7 @@
 
 ___
 ## 🚩 *Description*:    
-### *Use this website to create and store a list a vendors your business has relationships with, as well as orders that your vendors have ordered. This website will allow you to view vendors(name, description) and order details (title, description, cost, date/time of order) of those entered.*
+### *This program uses Identity to allow users to sign in as a librarian or a patron. Patrons can track their *
 
 
 ## 🔧 *Setup/Installation instructions:*
