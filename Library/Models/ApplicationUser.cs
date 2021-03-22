@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace Library.Models
 {
-  public class ClassName
+  public class ApplicationUser : IdentityUser
   {
-    // properties, constructors, methods, etc. go here
+    
   }
 }
