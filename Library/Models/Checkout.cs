@@ -2,6 +2,10 @@ namespace Library.Models
 {
   public class Checkout
   {
-    // properties, constructors, methods, etc. go here
+    public int CheckoutId { get; set; }
+    public int CodyId { get; set; }
+    public int PatronId { get; set; }
+    public virtual Copy Copy { get; set; }
+    public virtual Patron Patron { get; set; }
   }
 }
