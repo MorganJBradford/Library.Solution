@@ -53,5 +53,13 @@ namespace Library.Controllers
       .FirstOrDefault(book => book.BookId == id);
       return View(thisBook);
     }
+    [HttpPost]
+    public ActionResult Delete(int id)
+    {
+      var thisBook = _db.Books.FirstOrDefault(books => books.BookId == id);
+      _db.Books.Remove(thisBook);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
