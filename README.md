@@ -1,4 +1,4 @@
-## <div align="center">Pierre's Vender and Order Tracker</div>
+## <div align="center">Library</div>
 #### <div align="center"> *A website created for tracking business vendors and orders* </div> 
 ***<p align="right">Morgan Bradford***</p>   
 <p align="center">

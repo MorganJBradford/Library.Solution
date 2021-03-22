@@ -1,20 +1,21 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ProjectName.Models;
+using Library.Models;
 
-namespace ProjectName
+namespace Library
 {
   public class Startup
   {
     public Startup(IWebHostEnvironment env)
     {
       var builder = new ConfigurationBuilder()
-          .SetBasePath(env.ContentRootPath)
-          .AddJsonFile("appsettings.json");
+        .SetBasePath(env.ContentRootPath)
+        .AddJsonFile("appsettings.json");
       Configuration = builder.Build();
     }
 
@@ -25,14 +26,32 @@ namespace ProjectName
       services.AddMvc();
 
       services.AddEntityFrameworkMySql()
-        .AddDbContext<ProjectNameContext>(options => options
+        .AddDbContext<LibraryContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
+
+      services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<LibraryContext>()
+        .AddDefaultTokenProviders();
+
+      // services.Configure<IdentityOptions>(options =>
+      // {
+      //   options.Password.RequireDigit = false;
+      //   options.Password.RequiredLength = 0;
+      //   options.Password.RequireLowercase = false;
+      //   options.Password.RequireNonAlphanumeric = false;
+      //   options.Password.RequireUppercase = false;
+      //   options.Password.RequiredUniqueChars = 0;
+      // });
     }
 
     public void Configure(IApplicationBuilder app)
     {
       app.UseDeveloperExceptionPage();
+
+      app.UseAuthentication();
+
       app.UseRouting();
+      app.UseAuthorization();
 
       app.UseEndpoints(routes =>
       {

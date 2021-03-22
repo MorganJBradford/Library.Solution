@@ -1,6 +1,6 @@
-namespace ProjectName
+namespace Library.Models
 {
-  public class ClassName
+  public class Copy
   {
     // properties, constructors, methods, etc. go here
   }
