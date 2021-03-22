@@ -21,6 +21,11 @@ namespace Library.Controllers
     {
       return View();
     }
+
+    public ActionResult Register()
+    {
+      return View();
+    }
     
     [HttpPost]
     public async Task<ActionResult> Login(LoginViewModel model)
