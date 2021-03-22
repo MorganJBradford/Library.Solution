@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Library.Models
 {
   public class Patron
@@ -10,5 +12,6 @@ namespace Library.Models
     public string Name { get; set; }
     public string Books { get; set; }
     public virtual ApplicationUser PatronUser { get; set; }
+    public virtual ICollection<Checkout> JoinEntities { get; }
   }
 }
