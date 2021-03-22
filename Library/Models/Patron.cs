@@ -2,6 +2,13 @@ namespace Library.Models
 {
   public class Patron
   {
-    // properties, constructors, methods, etc. go here
+    public Patron()
+    {
+      JoinEntities = new HashSet<Checkout>();
+    }
+    public int PatronId { get; set; }
+    public string Name { get; set; }
+    public string Books { get; set; }
+    public virtual ApplicationUser PatronUser { get; set; }
   }
 }
