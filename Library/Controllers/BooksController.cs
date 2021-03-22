@@ -1,12 +1,14 @@
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using Library.Models;
+using System;
 
 namespace Library.Controllers
 {
@@ -16,7 +18,7 @@ namespace Library.Controllers
     private readonly UserManager<ApplicationUser> _userManager;
     public BooksController(UserManager<ApplicationUser> userManager, LibraryContext db)
     {
-      _userManager - userManager;
+      _userManager = userManager;
       _db = db;
     }
     public ActionResult Index()
@@ -38,7 +40,7 @@ namespace Library.Controllers
       _db.SaveChanges();
       if (AuthorId != 0)
       {
-        _db.AuthorBook.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId })
+        _db.AuthorBook.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId });
       }
       return RedirectToAction("Index");
     }

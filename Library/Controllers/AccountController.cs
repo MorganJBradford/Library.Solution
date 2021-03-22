@@ -4,14 +4,14 @@ using Library.Models;
 using System.Threading.Tasks;
 using Library.ViewModels;
 
-namespace Library.Controller
+namespace Library.Controllers
 {
-  public class AccountConroller : Controller
+  public class AccountController : Controller
   {
     private readonly LibraryContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
-    public AccountConroller (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, LibraryContext db)
+    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, LibraryContext db)
     {
       _userManager = userManager;
       _signInManager = signInManager;
@@ -21,6 +21,7 @@ namespace Library.Controller
     {
       return View();
     }
+    
     [HttpPost]
     public async Task<ActionResult> Login(LoginViewModel model)
     {
