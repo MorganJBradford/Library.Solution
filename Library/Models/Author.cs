@@ -5,7 +5,7 @@ namespace Library.Models
   {
     public Author()
     {
-      this.JoinEntities = new HashSet<AuthorBook>();
+      JoinEntities = new HashSet<AuthorBook>();
     }
     public int AuthorId { get; set; }
     public string Name { get; set; }
