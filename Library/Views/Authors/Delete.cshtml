@@ -1,0 +1,12 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Author
+
+<p>@Model.Name</p>
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" />
+}
+@Html.ActionLink("Back to authors", "Index")
