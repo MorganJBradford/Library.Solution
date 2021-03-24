@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+@model Library.Models.Author
+<h2>Author Details</h2>
+<hr/>
+<h3>Name: @Html.DisplayFor(model => model.Name)</h3>
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>Our library doesn't carry this authors book yet.</p>
+}
+else
+{
+  <h4>Author:</h4>
+  <ul>
+  @foreach (var join in Model.JoinEntities)
+  {
+    <li>@join.Book.Title</li>
+    @using (Html.BeginForm("DeleteBook", "Authors"))
+    {
+      @Html.Hidden("joinId", @join.AuthorBookId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+}
+<button>@Html.ActionLink("Edit author", "Edit", new { id = Model.AuthorId })</button>
+<button>@Html.ActionLink("Delete author", "Delete", new { id = Model.AuthorId })</button>
+<hr/>
+<button>@Html.ActionLink("Home", "Index", "Home")</button>
+<button>@Html.ActionLink("All authors", "Index")</button>
+<button>@Html.ActionLink("All books", "Index", "Books")</button>

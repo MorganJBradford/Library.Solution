@@ -1,0 +1,39 @@
+@{
+  Layout = "_Layout";
+}
+@using Library.Models;
+
+@using (Html.BeginForm())
+{
+  @Html.Label("Category", "Category")
+  @Html.DropDownList("Category",(IEnumerable
+    <SelectListItem>)ViewBag.Category)
+
+  @Html.Label("Name", "Title")
+  @Html.TextBox("searchEntry")
+  <input type="submit" value="Search!" />
+}
+
+@if(!(Model is null))
+{
+  @if (Model["AuthorResults"].Count == 0 && Model["BookResults"].Count == 0)
+  {
+    <h3>No results</h3>
+  }
+  else
+  {
+    <ul>
+      @foreach(Author author in Model["AuthorResults"])
+      {
+        <li>@Html.ActionLink($"{author.Name}", "Details", "Authors", new { authorId = author.AuthorId})</li>
+      }
+    </ul>
+    <ul>
+      @foreach (Book book in Model["BookResults"])
+      {
+        <li>@Html.ActionLink($"{book.Title}", "Details", "Books", new { bookId = book.BookId})</li>
+      }
+    </ul>
+  }
+}
+<p>@Html.ActionLink("Home.", "Index", "Home")</p>

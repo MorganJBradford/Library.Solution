@@ -16,12 +16,19 @@ else
   <ul>
   @foreach(var join in Model.JoinEntities)
   {
-    @* <li>@join.Author.Name</li>
-    @using (Html.BeginForm("DeleteCategory", "Items"))
+    <li>@join.Author.Name</li>
+    @using (Html.BeginForm("DeleteAuthor", "Books"))
     {
-      @Html.Hidden("joinId", @join.CategoryItemId)
+      @Html.Hidden("joinId", @join.AuthorBookId)
       <input type="submit" value="Delete"/>
     }
-  } *@
+  }
   </ul>
 }
+
+<button>@Html.ActionLink("Edit book", "Edit", new { id = Model.BookId })</button>
+<hr/>
+<button>@Html.ActionLink("Home", "Index", "Home")</button>
+<button>@Html.ActionLink("All books", "Index")</button>
+<button>@Html.ActionLink("All authors", "Index", "Authors")</button>
+<button>@Html.ActionLink("Delete book", "Delete", new { id = Model.BookId })</button>
