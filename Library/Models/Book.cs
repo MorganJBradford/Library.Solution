@@ -8,6 +8,7 @@ namespace Library.Models
     public Book()
     {
       JoinEntities = new HashSet<AuthorBook>();
+      this.Copies = new HashSet<Copy>();
     }
     
     public int BookId { get; set; }
