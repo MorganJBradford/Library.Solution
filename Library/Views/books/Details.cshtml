@@ -5,7 +5,7 @@
 <h2>Book Details</h2>
 <hr />
 <h3>Title: @Html.DisplayFor(model => model.Title)</h3>
-<h3>Number of Copies: @ViewBag.Copies.Count</h3>
+<h3>Number of Copies: @Html.DisplayFor(model => model.Copies)</h3>
 @if(@Model.JoinEntities.Count == 0)
 {
   <p>This book does not have an author listed.</p>
@@ -26,11 +26,15 @@ else
   </ul>
 }
 
+
 @using (Html.BeginForm("AddCopy", "Books"))
   {
     @Html.Hidden("BookId", @Model.BookId)
+    @Html.Label("Add copies")
+    <input type="text" name="userInput" id="userInput">
     <input type="submit" value="Add new copy"/>
   }
+
 
 <button>@Html.ActionLink("Edit book", "Edit", new { id = Model.BookId })</button>
 <hr/>

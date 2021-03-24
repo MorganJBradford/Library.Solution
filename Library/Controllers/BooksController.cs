@@ -36,8 +36,16 @@ namespace Library.Controllers
     [HttpPost]
     public ActionResult Create(Book book, int AuthorId)
     {
-      _db.Books.Add(book);
-      _db.SaveChanges();
+      bool duplicate = _db.Books.Any(x => x.Title == book.Title);
+      if(duplicate)
+      {
+        return RedirectToAction("RepeatBook");
+      }
+      else
+      {
+        _db.Books.Add(book);
+        _db.SaveChanges();
+      }
       if (AuthorId != 0)
       {
         _db.AuthorBook.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId });
@@ -45,10 +53,24 @@ namespace Library.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    
+    public ActionResult RepeatBook()
+    {
+      return View();
+    }
+    
+    [HttpPost]
+    public ActionResult AddCopy(int BookId, string userInput)
+    {
+      var thisBook = _db.Books.FirstOrDefault(books => books.BookId == BookId);
+      thisBook.Copies += int.Parse(userInput);
+      _db.Entry(thisBook).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
     public ActionResult Details(int id)
     {
-      ViewBag.Copies = _db.Copies.Where(x => x.BookId == id).ToList();
       Book thisBook = _db.Books
       .Include(book => book.JoinEntities)
       .ThenInclude(join => join.Author)
@@ -95,14 +117,6 @@ namespace Library.Controllers
     {
       var joinEntry = _db.AuthorBook.FirstOrDefault(entry => entry.AuthorBookId == joinId);
       _db.AuthorBook.Remove(joinEntry);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
-
-    [HttpPost]
-    public ActionResult AddCopy(Copy copy)
-    {
-      _db.Copies.Add(copy);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
