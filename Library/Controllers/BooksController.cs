@@ -48,6 +48,7 @@ namespace Library.Controllers
 
     public ActionResult Details(int id)
     {
+      ViewBag.Copies = _db.Copies.Where(x => x.BookId == id).ToList();
       Book thisBook = _db.Books
       .Include(book => book.JoinEntities)
       .ThenInclude(join => join.Author)
@@ -94,6 +95,14 @@ namespace Library.Controllers
     {
       var joinEntry = _db.AuthorBook.FirstOrDefault(entry => entry.AuthorBookId == joinId);
       _db.AuthorBook.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult AddCopy(Copy copy)
+    {
+      _db.Copies.Add(copy);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
