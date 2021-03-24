@@ -91,6 +91,21 @@ namespace Library.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    public ActionResult Checkout(int id)
+    {
+      var thisBook = _db.Books.FirstOrDefault(books => books.BookId == id);
+      return View(thisBook);
+    }
+
+    [HttpPost, ActionName("Checkout")]
+    public ActionResult CheckoutConfirmed(int id)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      _db.Checkout.Add(new Checkout( { BookId = id, <ApplicationUser> = );
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
     public ActionResult Edit(int id)
     {

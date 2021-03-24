@@ -1,0 +1,11 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Book
+<h3>You checked out @Model.Title</h3>
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Checkout" />
+}
+@Html.ActionLink("Back to Books", "Index")

@@ -35,7 +35,7 @@ else
     <input type="submit" value="Add new copy"/>
   }
 
-
+<button>@Html.ActionLink("Check out book", "Checkout", new { id = Model.BookId })</button>
 <button>@Html.ActionLink("Edit book", "Edit", new { id = Model.BookId })</button>
 <hr/>
 <button>@Html.ActionLink("Home", "Index", "Home")</button>
